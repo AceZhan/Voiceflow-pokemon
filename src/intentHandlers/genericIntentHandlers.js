@@ -26,7 +26,7 @@ const HelpIntentHandler = {
 
     const say = "You said help. Do you want to continue?";
 
-    sessionAttributes.afterHelp = true;
+    sessionAttributes.afterHelpIntent = true;
 
     return handlerInput.responseBuilder
       .speak(say)
@@ -49,7 +49,7 @@ const YesIntentHandler = {
     let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
     let say = "You said Yes";
-    if (sessionAttributes.afterHelp) {
+    if (sessionAttributes.afterHelpIntent) {
       say += ", What else do you want to know about Pokemon?";
     }
 
@@ -73,7 +73,7 @@ const NoIntentHandler = {
     let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
     let say = "You said No";
-    if (sessionAttributes.afterHelp) {
+    if (sessionAttributes.afterHelpIntent) {
       say += ", closing the Pokedex.";
 
       return responseBuilder

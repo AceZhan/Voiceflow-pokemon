@@ -64,14 +64,22 @@ const timeGetPokemonInfo = async (pokemonName) => {
   ]);
 };
 
-function capitalize(myString) {
-  return myString.replace(/(?:^|\s)\S/g, function (a) {
+function capitalize(str) {
+  return str.replace(/(?:^|\s)\S/g, function (a) {
     return a.toUpperCase();
   });
+}
+
+function formatString(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 }
 
 module.exports = {
   getSlotValues,
   timeGetPokemonInfo,
   capitalize,
+  formatString,
 };

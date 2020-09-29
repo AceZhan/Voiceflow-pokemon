@@ -3,6 +3,7 @@ const {
   getSlotValues,
   timeGetPokemonInfo,
   capitalize,
+  formatString,
 } = require("../utils/helpers");
 
 const PokemonAllInfoHandler = {
@@ -26,10 +27,11 @@ const PokemonAllInfoHandler = {
         .getResponse();
     }
 
-    const pokemonName =
+    const pokemonName = formatString(
       pokemonSlotObject.resolved !== ""
         ? pokemonSlotObject.resolved
-        : pokemonSlotObject.heardAs;
+        : pokemonSlotObject.heardAs
+    );
     let pokemonInfo;
     let say;
     try {
@@ -45,7 +47,6 @@ const PokemonAllInfoHandler = {
     }
 
     if (!pokemonInfo) {
-      sessionAttributes.unknownPokemon = pokemonName;
       say = `hmm, I'm not sure I know about ${pokemonName}, are you sure it is a pokemon?`;
     } else {
       let types = "";
@@ -101,14 +102,16 @@ const PokemonTraitHandler = {
         .getResponse();
     }
 
-    const pokemonName =
+    const pokemonName = formatString(
       pokemonNameSlotObject.resolved !== ""
         ? pokemonNameSlotObject.resolved
-        : pokemonNameSlotObject.heardAs;
-    const pokemonTrait =
+        : pokemonNameSlotObject.heardAs
+    );
+    const pokemonTrait = formatString(
       pokemonTraitSlotObject.resolved !== ""
         ? pokemonTraitSlotObject.resolved
-        : pokemonTraitSlotObject.heardAs;
+        : pokemonTraitSlotObject.heardAs
+    );
     let pokemonInfo;
     let say;
     try {
@@ -124,7 +127,6 @@ const PokemonTraitHandler = {
     }
 
     if (!pokemonInfo) {
-      sessionAttributes.unknownPokemon = pokemonName;
       say = `hmm, I'm not sure I know about ${pokemonName}, are you sure it is a pokemon?`;
     } else if (
       pokemonTrait === "type" ||
