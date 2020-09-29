@@ -10,12 +10,12 @@ const {
   CancelAndStopIntentHandler,
   SessionEndedRequestHandler,
   ErrorHandler,
-} = require("./intentHandlers/generalIntents");
+} = require("./intentHandlers/genericIntentHandlers");
 
 const {
   PokemonAllInfoHandler,
   PokemonTraitHandler,
-} = require("./intentHandlers/pokemonIntents");
+} = require("./intentHandlers/pokemonIntentHandlers");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
